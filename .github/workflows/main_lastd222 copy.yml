@@ -21,9 +21,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - run: |
+          echo "subscription id: ${{github.event.inputs.subscriptionId}}"
+          echo "resource group name: ${{ github.event.inputs.resourceGroupName }}" 
       - uses: azure/arm-deploy@v1
         with:
             subscriptionId: ${{github.event.inputs.subscriptionId}}
-            resourceGroupName: 'DefaultResourceGroup-EUS'
+            #resourceGroupName: 'DefaultResourceGroup-EUS'
             template: ./ARMTemplates/template.json
             parameters: ./ARMTemplates/parameters.json
