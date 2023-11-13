@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          echo "AZURE CREDENTIALS : '" ${{ secrets.AZURE_CREDENTIALS }} "'"
+          echo "AZURE CREDENTIALS : '" ${{ secrets.AZURE_CREDENTIALS.tenantId }} "'"
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
