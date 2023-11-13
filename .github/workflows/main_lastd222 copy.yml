@@ -27,4 +27,4 @@ jobs:
             subscriptionId: 'dfcee046-6355-47a1-8b62-057fc99c1fda'
             template: ./ARMTemplates/template.json
             parameters: ./ARMTemplates/parameters.json
-            region: eastus
+            region: 'East US'
