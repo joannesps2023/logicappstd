@@ -1,0 +1,32 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js project to Azure Function App - LASTD222
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      subscriptionId:
+        description: 'SubscriptionId'
+        required: true
+      resourceGroupName:
+        description: 'Resource group name'
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/arm-deploy@v1
+        with:
+            subscriptionId: 'dfcee046-6355-47a1-8b62-057fc99c1fda'
+            resourceGroupName: 'DefaultResourceGroup-EUS'
+            template: ./ARMTemplates/template.json
+            parameters: ./ARMTemplates/parameters.json
+            app-name: 'LASTD222'
+            slot-name: 'Production'
+            publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DB57B8EEB054D6292F9462AC8C45A4C }}
