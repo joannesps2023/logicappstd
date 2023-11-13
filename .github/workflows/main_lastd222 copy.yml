@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: azure/login@v1
         with:
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DB57B8EEB054D6292F9462AC8C45A4C }}
+          creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DB57B8EEB054D6292F9462AC8C45A4C }}
       - uses: actions/checkout@v4
       - run: |
           echo "subscription id: ${{github.event.inputs.subscriptionId}}"
