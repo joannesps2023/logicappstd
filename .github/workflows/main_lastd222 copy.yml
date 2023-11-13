@@ -26,6 +26,7 @@ jobs:
       #     echo "resource group name: ${{ github.event.inputs.resourceGroupName }}" 
       - uses: azure/arm-deploy@v1
         with:
+            scope: subscription
             subscriptionId: 'dfcee046-6355-47a1-8b62-057fc99c1fda'
             resourceGroupName: 'DefaultResourceGroup-EUS'
             template: ./ARMTemplates/template.json
