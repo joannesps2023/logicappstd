@@ -8,25 +8,26 @@ on:
     branches:
       - main
   workflow_dispatch:
-    inputs:
-      subscriptionId:
-        description: 'SubscriptionId'
-        required: true
-      resourceGroupName:
-        description: 'Resource group name'
-        required: true
+    # inputs:
+      # subscriptionId:
+      #   description: 'SubscriptionId'
+      #   required: true
+      # resourceGroupName:
+      #   description: 'Resource group name'
+      #   required: true
 
 jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          echo "subscription id: ${{github.event.inputs.subscriptionId}}"
-          echo "resource group name: ${{ github.event.inputs.resourceGroupName }}" 
+      # - run: |
+      #     echo "subscription id: ${{github.event.inputs.subscriptionId}}"
+      #     echo "resource group name: ${{ github.event.inputs.resourceGroupName }}" 
       - uses: azure/arm-deploy@v1
         with:
-            subscriptionId: ${{github.event.inputs.subscriptionId}}
-            #resourceGroupName: 'DefaultResourceGroup-EUS'
+            subscriptionId: 'dfcee046-6355-47a1-8b62-057fc99c1fda'
+            resourceGroupName: 'DefaultResourceGroup-EUS'
             template: ./ARMTemplates/template.json
             parameters: ./ARMTemplates/parameters.json
+            region: 'eastus'
