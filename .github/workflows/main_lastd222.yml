@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: './ARMTemplates' # set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '../../ARMTemplates' # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '18.x' # set this to the node version to use (supports 8.x, 10.x, 12.x)
 
 jobs:
@@ -25,14 +25,26 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: 'Resolve Project Dependencies Using Npm'
-        shell: pwsh
+      # - name: 'Resolve Project Dependencies Using Npm'
+      #   shell: pwsh
+      #   run: |
+      #     pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+      #     npm install
+      #     npm run build --if-present
+      #     npm run test --if-present
+      #     popd
+
+      - name: Create project folder
         run: |
-          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-          npm install
-          npm run build --if-present
-          npm run test --if-present
-          popd
+          mkdir output
+          cp 'host.json' 'output/'
+          cp -r 'Stateful1' 'output/'
+
+      - name: Easy Zip Files
+        uses: vimtor/action-zip@v1
+        with:
+          dest: '${{ github.run_id }}.zip'
+          files: output/
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
