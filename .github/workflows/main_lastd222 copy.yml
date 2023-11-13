@@ -24,9 +24,6 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - run: |
-          echo "subscriptionS id: ${{github.event.inputs.subscriptionId}}"
-          echo "resource group name: ${{ github.event.inputs.resourceGroupName }}" 
       - uses: azure/arm-deploy@v1
         with:
             subscriptionId: 'dfcee046-6355-47a1-8b62-057fc99c1fda'
