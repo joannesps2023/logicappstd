@@ -20,13 +20,13 @@ jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
-      - name: Set up Azure CLI
-        uses: azure/setup-azure-cli@v1
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: fa
         with:
-          azcliversion: 'latest'
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DB57B8EEB054D6292F9462AC8C45A4C }}
+          app-name: 'LASTD222'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DB57B8EEB054D6292F9462AC8C45A4C }}
       - uses: actions/checkout@v4
       - run: |
           echo "subscription id: ${{github.event.inputs.subscriptionId}}"
