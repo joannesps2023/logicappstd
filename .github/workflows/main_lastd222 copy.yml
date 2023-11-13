@@ -27,6 +27,3 @@ jobs:
             resourceGroupName: 'DefaultResourceGroup-EUS'
             template: ./ARMTemplates/template.json
             parameters: ./ARMTemplates/parameters.json
-            app-name: 'LASTD222'
-            slot-name: 'Production'
-            publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DB57B8EEB054D6292F9462AC8C45A4C }}
