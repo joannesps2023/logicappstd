@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'LASTD222'
           slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          package: '${{ github.run_id }}.zip'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DB57B8EEB054D6292F9462AC8C45A4C }}
