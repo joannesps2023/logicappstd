@@ -44,7 +44,7 @@ jobs:
           az account list --output table | sed 's/./& /g'
           az account set --subscription dfcee046-6355-47a1-8b62-057fc99c1fda | sed 's/./& /g'
           az account show | sed 's/./& /g'
-
+          az login
       - uses: azure/arm-deploy@v1
         with:
             subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
