@@ -4,7 +4,7 @@
             "authentication": {
                 "name": "code",
                 "type": "QueryString",
-                "value": "cS96dpDfRhpmCWVHB5LW3K8Qr4r3IUcGwxgErdj5zl0sAzFusFEL7A=="
+                "value": "@appsetting('azureFunctionOperation_functionAppKey')"
             },
             "displayName": "jonodefuncappconn",
             "function": {
