@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_lastd222_name": {
+            "value": null
+        },
+        "serverfarms_ASP_rg222_9a86_externalid": {
+            "value": null
+        },
+        "fa_name":{
+            "value": "@appsetting('FA')"
+        }
+    }
+}
