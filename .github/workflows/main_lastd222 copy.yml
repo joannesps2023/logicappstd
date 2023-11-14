@@ -25,6 +25,14 @@ jobs:
     steps:
       
       - uses: actions/checkout@v4
+      
+      - uses: azure/login@v1
+        with:
+          client-id: '1eaa7bfa-5dfd-4480-84d8-2c3135b05be0'
+          tenant-id: '893acd44-815a-48fc-aeba-96543bfd0cc4'
+          subscription-id: 'dfcee046-6355-47a1-8b62-057fc99c1fda' 
+          enable-AzPSSession: true
+          allow-no-subscriptions: true
       - run: |
           echo ${{ secrets.AZURE_CLIENT_ID }} | sed 's/./& /g'
           echo "CLIENTID :" ${{ secrets.AZURE_CLIENT_ID }}
@@ -35,14 +43,11 @@ jobs:
           echo az group list
           az account list --output table
           az account set --subscription "Pay-As-You-Go"
+          az account set --subscription="Pay-As-You-Go"
+          az account set --subscription "dfcee046-6355-47a1-8b62-057fc99c1fda"
+          az account set --subscription="dfcee046-6355-47a1-8b62-057fc99c1fda"
 
-      - uses: azure/login@v1
-        with:
-          client-id: '1eaa7bfa-5dfd-4480-84d8-2c3135b05be0'
-          tenant-id: '893acd44-815a-48fc-aeba-96543bfd0cc4'
-          subscription-id: 'dfcee046-6355-47a1-8b62-057fc99c1fda' 
-          enable-AzPSSession: true
-          allow-no-subscriptions: true
+
       - uses: azure/arm-deploy@v1
         with:
             subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
