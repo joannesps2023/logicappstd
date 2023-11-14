@@ -10,7 +10,7 @@
             "function": {
                 "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/resourceGroups/@appsetting('RG')/providers/Microsoft.Web/sites/@appsetting('FA')/functions/HttpTrigger1"
             },
-            "triggerUrl": "@parameters('fa_name')"
+            "triggerUrl": "https://nodefastg222.azurewebsites.net/api/Httptrigger1"
         }
     }
 }

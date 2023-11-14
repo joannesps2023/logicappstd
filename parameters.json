@@ -7,9 +7,6 @@
         },
         "serverfarms_ASP_rg222_9a86_externalid": {
             "value": null
-        },
-        "fa_name":{
-            "value": "https://@appsetting('FA').azurewebsites.net/api/Httptrigger1"
         }
     }
 }
