@@ -1,33 +1,29 @@
 {
-  "definition": {
-      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-      "actions": {
-          "Call_an_Azure_function": {
-              "inputs": {
-                  "function": {
-                      "connectionName": "azureFunctionOperation"
-                  },
-                  "method": "POST",
-                  "retryPolicy": {
-                      "type": "none"
-                  }
-              },
-              "runAfter": {},
-              "type": "Function"
-          }
-      },
-      "contentVersion": "1.0.0.0",
-      "outputs": {},
-      "triggers": {
-          "Recurrence": {
-              "recurrence": {
-                  "frequency": "Day",
-                  "interval": 20,
-                  "timeZone": "India Standard Time"
-              },
-              "type": "Recurrence"
-          }
-      }
-  },
-  "kind": "Stateful"
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Call_an_Azure_function": {
+                "inputs": {
+                    "function": {
+                        "connectionName": "azureFunctionOperation"
+                    },
+                    "method": "POST"
+                },
+                "runAfter": {},
+                "type": "Function"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "triggers": {
+            "Recurrence": {
+                "recurrence": {
+                    "frequency": "Day",
+                    "interval": 4
+                },
+                "type": "Recurrence"
+            }
+        }
+    },
+    "kind": "Stateful"
 }
