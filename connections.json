@@ -10,8 +10,7 @@
             "function": {
                 "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/resourceGroups/@appsetting('RG')/providers/Microsoft.Web/sites/@appsetting('FA')/functions/HttpTrigger1"
             },
-            "triggerUrl": "https://@appsetting('FA').azurewebsites.net/api/httptrigger1"
+            "triggerUrl": "https://@appsetting('FA').azurewebsites.net/api/Httptrigger1"
         }
-    },
-    "managedApiConnections": {}
+    }
 }
