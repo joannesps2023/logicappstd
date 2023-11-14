@@ -38,10 +38,9 @@ jobs:
           client-id: '1eaa7bfa-5dfd-4480-84d8-2c3135b05be0'
           tenant-id: '893acd44-815a-48fc-aeba-96543bfd0cc4'
           subscription-id: 'dfcee046-6355-47a1-8b62-057fc99c1fda' 
-          allow-no-subscriptions: true
-
       - uses: azure/arm-deploy@v1
         with:
             subscriptionId: 'dfcee046-6355-47a1-8b62-057fc99c1fda'
             template: ./ARMTemplates/template.json
             parameters: ./ARMTemplates/parameters.json
+            region: 'eastus'
