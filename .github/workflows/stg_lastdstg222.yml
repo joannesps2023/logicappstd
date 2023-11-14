@@ -21,7 +21,7 @@ jobs:
           mkdir output
           cp 'host.json' 'output/'
           cp -r 'wf1' 'output/'
-          cp 'connections.json' 'output/'
+          cp 'connection.json' 'output/'
       - name: Easy Zip Files
         uses: vimtor/action-zip@v1
         with:
