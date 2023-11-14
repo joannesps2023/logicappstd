@@ -23,10 +23,11 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - run: curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+      
       - uses: actions/checkout@v4
       - uses: azure/login@v1
         with:
+          runs-on: self-hosted
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
