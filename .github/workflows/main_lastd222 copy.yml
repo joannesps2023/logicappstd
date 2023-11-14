@@ -32,13 +32,13 @@ jobs:
 
       - uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+          client-id: '1eaa7bfa-5dfd-4480-84d8-2c3135b05be0'
+          tenant-id: '893acd44-815a-48fc-aeba-96543bfd0cc4'
+          subscription-id: 'dfcee046-6355-47a1-8b62-057fc99c1fda' 
           enable-AzPSSession: true
-          allow-no-subscriptions: true
       - uses: azure/arm-deploy@v1
         with:
+            scope: subscription
             subscriptionId: 'dfcee046-6355-47a1-8b62-057fc99c1fda'
             resourceGroupName: 'DefaultResourceGroup-EUS'
             template: ./ARMTemplates/template.json
