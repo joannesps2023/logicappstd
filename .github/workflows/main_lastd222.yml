@@ -66,7 +66,7 @@ jobs:
         run: |
           mkdir output
           cp 'host.json' 'output/'
-          cp -r 'Stateful1' 'output/'
+          cp -r 'wf1' 'output/'
 
       - name: Easy Zip Files
         uses: vimtor/action-zip@v1
