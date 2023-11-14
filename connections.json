@@ -8,9 +8,9 @@
             },
             "displayName": "jonodefuncappconn",
             "function": {
-                "id": "/subscriptions/85973f1e-f752-4270-9ce6-223c93158d61/resourceGroups/rgstg222/providers/Microsoft.Web/sites/nodefastg222/functions/HttpTrigger1"
+                "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/resourceGroups/@appsetting('RG')/providers/Microsoft.Web/sites/@appsetting('FA')/functions/HttpTrigger1"
             },
-            "triggerUrl": "https://@appsetting('FA').azurewebsites.net/api/Httptrigger1"
+            "triggerUrl": "https://nodefastg222.azurewebsites.net/api/Httptrigger1"
         }
     }
 }
