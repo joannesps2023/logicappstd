@@ -23,7 +23,7 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - run: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+      - run: curl -sL https://aka.ms/InstallAzureCLIDeb | bash
       - uses: actions/checkout@v4
       - uses: azure/login@v1
         with:
