@@ -1,20 +1,20 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js project to Azure Function App - LASTD222
+name: Build and deploy Node.js project to Azure Function App - lastd222
 
 on:
   push:
     branches:
-      - main1
+      - main
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '../../ARMTemplates' # set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '18.x' # set this to the node version to use (supports 8.x, 10.x, 12.x)
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: windows-latest
     steps:
       - name: 'Checkout GitHub Action'
@@ -25,32 +25,39 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      # - name: 'Resolve Project Dependencies Using Npm'
-      #   shell: pwsh
-      #   run: |
-      #     pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-      #     npm install
-      #     npm run build --if-present
-      #     npm run test --if-present
-      #     popd
-
-      - name: Create project folder
+      - name: 'Resolve Project Dependencies Using Npm'
+        shell: pwsh
         run: |
-          mkdir output
-          cp 'host.json' 'output/'
-          cp -r 'Stateful1' 'output/'
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          npm install
+          npm run build --if-present
+          npm run test --if-present
+          popd
 
-      - name: Easy Zip Files
-        uses: vimtor/action-zip@v1
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
         with:
-          dest: '${{ github.run_id }}.zip'
-          files: output/
+          name: node-app
+          path: .
 
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: node-app
+      
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
         with:
-          app-name: 'LASTD222'
+          app-name: 'lastd222'
           slot-name: 'Production'
-          package: '${{ github.run_id }}.zip'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DB57B8EEB054D6292F9462AC8C45A4C }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7FE02DE258004254B2F73D950A61C4CA }}
