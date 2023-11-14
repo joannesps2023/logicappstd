@@ -9,7 +9,7 @@
             "value": null
         },
         "fa_name":{
-            "value": "@appsetting('FA')"
+            "value": "https://@appsetting('FA').azurewebsites.net/api/Httptrigger1"
         }
     }
 }
