@@ -34,7 +34,7 @@ jobs:
           echo "SUBSCRIPTIONID :" ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           echo az group list
           echo az account list --output table
-          az account set --subscription "dfcee046-6355-47a1-8b62-057fc99c1fda"
+          az account set --subscription "Pay-As-You-Go"
 
       - uses: azure/login@v1
         with:
