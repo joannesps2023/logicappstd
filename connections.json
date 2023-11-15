@@ -22,7 +22,7 @@
                 "type": "ManagedServiceIdentity"
             },
             "connection": {
-                "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/resourceGroups/rgstg222/providers/Microsoft.Web/connections/eventhubs"
+                "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/resourceGroups/@appsetting('RG')/providers/Microsoft.Web/connections/eventhubs"
             },
             "connectionRuntimeUrl": "@appsetting('CRURL')"
         }
