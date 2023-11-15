@@ -1,29 +1,68 @@
 {
     "definition": {
-        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-        "actions": {
-            "Call_an_Azure_function": {
-                "inputs": {
-                    "function": {
-                        "connectionName": "azureFunctionOperation"
-                    },
-                    "method": "POST"
-                },
-                "runAfter": {},
-                "type": "Function"
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "actions": {
+        "Call_an_Azure_function": {
+          "type": "Function",
+          "inputs": {
+            "method": "POST",
+            "function": {
+              "connectionName": "azureFunctionOperation"
             }
-        },
-        "contentVersion": "1.0.0.0",
-        "outputs": {},
-        "triggers": {
-            "Recurrence": {
-                "recurrence": {
-                    "frequency": "Day",
-                    "interval": 10
-                },
-                "type": "Recurrence"
-            }
+          },
+          "runAfter": {}
         }
+      },
+      "contentVersion": "1.0.0.0",
+      "outputs": {},
+      "triggers": {
+        "When_events_are_available_in_Event_Hub": {
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "referenceName": "eventhubs"
+              }
+            },
+            "method": "get",
+            "path": "/@{encodeURIComponent('ehstg222')}/events/batch/head",
+            "queries": {
+              "contentType": "application/octet-stream",
+              "consumerGroupName": "$Default",
+              "maximumEventsCount": 50
+            }
+          },
+          "recurrence": {
+            "interval": 10,
+            "frequency": "Day"
+          },
+          "splitOn": "@triggerBody()"
+        }
+      }
     },
+    "connectionReferences": {
+      "eventhubs": {
+        "connection": {
+          "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/resourceGroups/@appsetting('RG')/providers/Microsoft.Web/connections/eventhubs"
+        },
+        "connectionName": "eventhubs",
+        "api": {
+          "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/providers/Microsoft.Web/locations/eastus/managedApis/eventhubs"
+        },
+        "authentication": {
+          "type": "ManagedServiceIdentity"
+        }
+      },
+      "azureFunctionOperation": {
+        "connection": {
+          "id": "/connectionProviders/azureFunctionOperation/connections/azureFunctionOperation"
+        },
+        "connectionName": "azureFunctionOperation",
+        "api": {
+          "id": "/connectionProviders/azureFunctionOperation"
+        }
+      }
+    },
+    "parameters": {},
     "kind": "Stateful"
 }

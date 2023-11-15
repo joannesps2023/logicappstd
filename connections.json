@@ -12,5 +12,31 @@
             },
             "triggerUrl": "@appsetting('TURL')"
         }
+    },
+    "managedApiConnections": {
+        "eventhubs": {
+            "api": {
+                "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/providers/Microsoft.Web/locations/eastus/managedApis/eventhubs"
+            },
+            "authentication": {
+                "type": "ManagedServiceIdentity"
+            },
+            "connection": {
+                "id": "/subscriptions/@appsetting('SUBSCRIPTIONID')/resourceGroups/rgstg222/providers/Microsoft.Web/connections/eventhubs"
+            },
+            "connectionRuntimeUrl": "@appsetting('CRURL')"
+        }
+    },
+    "serviceProviderConnections": {
+        "eventHub": {
+            "displayName": "joehcon",
+            "parameterSetName": "connectionString",
+            "parameterValues": {
+                "connectionString": "@appsetting('eventHub_connectionString')"
+            },
+            "serviceProvider": {
+                "id": "/serviceProviders/eventHub"
+            }
+        }
     }
 }
