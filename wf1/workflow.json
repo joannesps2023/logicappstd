@@ -24,7 +24,7 @@
                         }
                     },
                     "method": "get",
-                    "path": "/@{encodeURIComponent('ehstg222')}/events/batch/head",
+                    "path": "/@{encodeURIComponent('@appsetting('EHC')')}/events/batch/head",
                     "queries": {
                         "consumerGroupName": "$Default",
                         "contentType": "application/octet-stream",
