@@ -32,8 +32,8 @@
                     }
                 },
                 "recurrence": {
-                    "frequency": "Minute",
-                    "interval": 1
+                    "frequency": "Second",
+                    "interval": 5
                 },
                 "splitOn": "@triggerBody()",
                 "type": "ApiConnection"
